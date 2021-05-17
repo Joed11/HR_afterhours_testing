@@ -1,7 +1,7 @@
 const handler = require("../javaApiHandler");
 const mockCache = require("../../cache/redisClient");
 const axios = require("axios");
-const MockExpressResponse = require("../../../__mocks__/MockExpressResponse");
+const MockExpressResponse = require("../../__mocks__/MockExpressResponse");
 const mockApiResponse = require("../../__stubs__/coffeeApiResponse.json");
 jest.mock("util");
 
