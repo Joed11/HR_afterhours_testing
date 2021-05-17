@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node src/api.js",
     "start:dev": "nodemon src/api.js",
-    "start:doge": "node src/dogeService.js",
     "test:unit": "./node_modules/.bin/jest src"
   },
   "keywords": [],
