@@ -1,6 +1,12 @@
 ## HR Afterhours Testing API
 
-### Installation:
+### Contents:
+
+- [Installation](#installation)
+- [API Usage](#api-usage)
+- [Credits](#credits)
+
+### Installation
 
 - #### Prerequisites:
 
@@ -39,3 +45,28 @@ npm start
     - ```
       npm run test:unit
       ```
+      
+### API Usage
+
+The api takes a username and assigns it a particular type of coffee as it's "favorite".  
+ 
+#### The basic route is:
+ 
+```
+localhost:5000/javaApi?username={username}
+```
+ 
+ ##### Query Params
+ 
+| Item:      | type    | description                                   |
+|----------  |-------  |-------------------------------------------    |
+| username   | string  | name the favorite coffee will be stored under |
+ 
+
+The response from the random data coffee api will be stored in redis with the username provided as the key.  Subsequent calls with the same username will be served by the cache.
+ 
+ 
+ ### Credits
+ Random data provided by [Random Data API](https://random-data-api.com/)
+ 
+ 
