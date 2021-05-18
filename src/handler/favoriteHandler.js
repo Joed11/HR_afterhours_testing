@@ -6,6 +6,9 @@ const {
 const axios = require("axios");
 const { promisify } = require("util");
 const setAsync = promisify(cache.set).bind(cache);
+const env = process.env.NODE_ENV;
+const coffeeApiUrl =
+  env === "integration" ? process.env.MOCK_COFFEE_API : process.env.COFFEE_API;
 
 const favoriteCoffeeRequestHandler = {
   getFavoriteCoffee: async (req, res) => {
@@ -40,9 +43,7 @@ const favoriteCoffeeRequestHandler = {
         throw badRequestError;
       }
       if (!req.body.coffee) {
-        const apiResponse = await axios.get(
-          "https://random-data-api.com/api/coffee/random_coffee"
-        );
+        const apiResponse = await axios.get(coffeeApiUrl);
         req.body.coffee = apiResponse.data;
       }
       const username = req.params.username.toLowerCase();

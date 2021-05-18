@@ -6,16 +6,19 @@
   "scripts": {
     "start": "node src/api.js",
     "start:dev": "nodemon src/api.js",
-    "test:unit": "./node_modules/.bin/jest src",
-    "pretest:integration": "pm2 start src/api.js --name appTest",
-    "test:integration": "./node_modules/.bin/jest integration_test || pm2 stop appTest && pm2 delete appTest",
-    "posttest:integration": "pm2 stop appTest && pm2 delete appTest"
+    "test:unit": "./node_modules/.bin/jest --config jest.config.unit.js",
+    "pretest:integration": "NODE_ENV=integration npm run startPm2",
+    "test:integration": "./node_modules/.bin/jest src/integration_test || npm run clearPm2",
+    "posttest:integration": "npm run clearPm2",
+    "startPm2": "pm2 start src/api.js --name appTest && pm2 start src/__mocks__/coffeeApi.js --name mockApi",
+    "clearPm2": "pm2 stop all && pm2 delete all"
   },
   "keywords": [],
   "author": "Joe DiMartino",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "mongoose": "^5.12.9",
