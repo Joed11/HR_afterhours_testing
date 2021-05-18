@@ -2,8 +2,8 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const javaApiUrl = `http://localhost:${PORT}`;
 const axios = jest.requireActual("axios");
-const getRandomCoffeeResponse = require("../../__stubs__/getFavoriteCoffeeResponse.json");
-const postFavoriteCoffeeResponse = require("../../__stubs__/postFavoriteCoffeeResponse.json");
+const getRandomCoffeeResponse = require("../__stubs__/getFavoriteCoffeeResponse.json");
+const postFavoriteCoffeeResponse = require("../__stubs__/postFavoriteCoffeeResponse.json");
 const getFavortieCoffeeResponse = getRandomCoffeeResponse;
 const coffeToPost = getRandomCoffeeResponse;
 
