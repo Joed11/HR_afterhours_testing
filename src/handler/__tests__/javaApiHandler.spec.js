@@ -1,4 +1,4 @@
-const handler = require("../javaApiHandler");
+const handler = require("../favoriteHandler");
 const mockCache = require("../../cache/redisClient");
 const axios = require("axios");
 const MockExpressResponse = require("../../__mocks__/MockExpressResponse");
