@@ -48,6 +48,10 @@ npm start
     - ```
       npm run test:unit
       ```
+  - An integration test can be run via the following command:
+    - ```
+      npm run test:integration
+      ```
       
 ### API Usage
 
