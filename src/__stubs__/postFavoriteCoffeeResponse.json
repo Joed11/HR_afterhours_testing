@@ -1,0 +1,15 @@
+{
+  "message": "Stored the favorite coffee",
+  "storedData": {
+    "username": "joed",
+    "coffee": {
+      "id": 6566,
+      "uid": "3370fa75-9c9f-4575-92d1-0f9c888447de",
+      "blend_name": "Heart Pie",
+      "origin": "Cacahuatique, El Salvador",
+      "variety": "SL28",
+      "notes": "lingering, coating, dates, hibiscus, curry",
+      "intensifier": "structured"
+    }
+  }
+}

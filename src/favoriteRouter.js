@@ -6,7 +6,7 @@ const {
   setFavoriteCoffee,
 } = require("./handler/favoriteHandler");
 
-router.get("/", getFavoriteCoffeeFromCache, getFavoriteCoffee);
-router.post("/", setFavoriteCoffee);
+router.get("/:username", getFavoriteCoffeeFromCache, getFavoriteCoffee);
+router.post("/:username", setFavoriteCoffee);
 
 module.exports = router;

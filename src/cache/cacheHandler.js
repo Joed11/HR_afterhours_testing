@@ -4,7 +4,7 @@ const getAsync = promisify(cache.get).bind(cache);
 
 async function getFavoriteCoffeeFromCache(req, res, next) {
   try {
-    const username = req.body.username.toLowerCase();
+    const username = req.params.username.toLowerCase();
     if (!username) {
       res.status(400).send("Submit a username");
     }

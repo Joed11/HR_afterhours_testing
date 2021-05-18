@@ -10,13 +10,18 @@ const setAsync = promisify(cache.set).bind(cache);
 const favoriteCoffeeRequestHandler = {
   getFavoriteCoffee: async (req, res) => {
     try {
-      if (!req.body.username) {
+      if (!req.params.username) {
         const badRequestError = new Error("Submit a Username");
         badRequestError.code = 400;
         throw badRequestError;
       }
-      const username = req.body.username.toLowerCase();
+      const username = req.params.username.toLowerCase();
       const favoriteCoffeeEntry = await retrieveFavoriteCoffee(username);
+      if (favoriteCoffeeEntry.length < 1) {
+        const notFoundError = new Error("No coffee for you");
+        notFoundError.code = 404;
+        throw notFoundError;
+      }
       setAsync(username, JSON.stringify(favoriteCoffeeEntry[0]), "EX", 10);
       res.status(200).send(favoriteCoffeeEntry[0]);
     } catch (error) {
@@ -24,12 +29,12 @@ const favoriteCoffeeRequestHandler = {
       if (error.code) {
         errorCode = error.code;
       }
-      res.status(errorCode).send(new Error(error.message));
+      res.status(errorCode).send(error.message);
     }
   },
   setFavoriteCoffee: async (req, res) => {
     try {
-      if (!req.body.username) {
+      if (!req.params.username) {
         const badRequestError = new Error("Submit a Username");
         badRequestError.code = 400;
         throw badRequestError;
@@ -40,24 +45,23 @@ const favoriteCoffeeRequestHandler = {
         );
         req.body.coffee = apiResponse.data;
       }
-      const username = req.body.username.toLowerCase();
-      const favoriteCoffeEntry = {
+      const username = req.params.username.toLowerCase();
+      const favoriteCoffeeEntry = {
         username: username,
         coffee: req.body.coffee,
       };
-      console.log(favoriteCoffeEntry);
-      storeFavoriteCoffee(favoriteCoffeEntry);
+      storeFavoriteCoffee(favoriteCoffeeEntry);
       setAsync(username, JSON.stringify(req.body.coffee), "EX", 10);
       res.status(200).send({
         message: "Stored the favorite coffee",
-        storedData: favoriteCoffeEntry,
+        storedData: favoriteCoffeeEntry,
       });
     } catch (error) {
       let errorCode = 500;
       if (error.code) {
         errorCode = error.code;
       }
-      res.status(errorCode).send(new Error(error.message));
+      res.status(errorCode).send(error.message);
     }
   },
 };
