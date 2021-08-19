@@ -2,6 +2,10 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const javaApiUrl = `http://localhost:${PORT}`;
 const axios = jest.requireActual("axios");
+const mongoose = require("mongoose");
+jest.requireActual("redis");
+jest.requireActual("util");
+jest.requireActual("../model/favoriteCoffee");
 const getRandomCoffeeResponse = require("../__stubs__/getFavoriteCoffeeResponse.json");
 const postFavoriteCoffeeResponse = require("../__stubs__/postFavoriteCoffeeResponse.json");
 const deleteFavoriteCoffeeResponse = require("../__stubs__/deleteFavoriteCoffeeResponse.json");
@@ -9,6 +13,10 @@ const getFavortieCoffeeResponse = getRandomCoffeeResponse;
 const coffeToPost = getRandomCoffeeResponse;
 
 describe("javaApi", () => {
+  afterAll(() => {
+    mongoose.connection.close();
+  });
+
   describe("/javaApi/random", () => {
     describe("GET request", () => {
       describe("200 Response", () => {
@@ -19,7 +27,7 @@ describe("javaApi", () => {
       });
     });
   });
-  describe("/javaApifavorites", () => {
+  describe("/javaApi/favorites", () => {
     describe("POST request", () => {
       describe("when coffee info is provided", () => {
         it("should respond with an object containg the username and the coffee data", async () => {

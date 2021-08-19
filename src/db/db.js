@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "integration") {
 }
 
 const connection = mongoose
-  .connect(`mongodb://localhost/${databaseName}`, {
+  .connect(`mongodb://localhost:27018/${databaseName}`, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
