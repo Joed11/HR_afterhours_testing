@@ -50,14 +50,14 @@ describe("javaApi", () => {
         });
       });
     });
-  });
-  describe("DELETE request", () => {
-    describe("when called", () => {
-      it("should respond with a message indicating the record was removed", async () => {
-        const response = await axios.delete(
-          `${javaApiUrl}/javaApi/favorite/joed`
-        );
-        expect(response.data).toMatchObject(deleteFavoriteCoffeeResponse);
+    describe("DELETE request", () => {
+      describe("when called", () => {
+        it("should respond with a message indicating the record was removed", async () => {
+          const response = await axios.delete(
+            `${javaApiUrl}/javaApi/favorite/joed`
+          );
+          expect(response.data).toMatchObject(deleteFavoriteCoffeeResponse);
+        });
       });
     });
   });
