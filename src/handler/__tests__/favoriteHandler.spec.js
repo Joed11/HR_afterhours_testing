@@ -4,6 +4,8 @@ const MockExpressResponse = require("../../__mocks__/MockExpressResponse");
 const getFavoriteCoffeeResponse = require("../../__stubs__/getFavoriteCoffeeResponse.json");
 const postFavoriteCoffeeResponse = require("../../__stubs__/postFavoriteCoffeeResponse.json");
 jest.mock("util");
+jest.mock("../../cache/redisClient");
+jest.mock("../../model/favoriteCoffee");
 
 describe("javaApiHandler", () => {
   describe("setFavoriteCoffee", () => {
