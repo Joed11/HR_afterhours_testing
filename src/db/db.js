@@ -1,9 +1,17 @@
 const mongoose = require("mongoose");
 
-const connection = mongoose.connect("mongodb://localhost/javaApi", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-});
+const connection = mongoose
+  .connect("mongodb://localhost/javaApi", {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connection to database established successfully");
+  })
+  .catch((error) => {
+    console.log("Something went wrong connection to database", error);
+  });
 
 const Schema = mongoose.Schema;
 

@@ -14,6 +14,9 @@ const favoriteCoffeeModel = {
   retrieveFavoriteCoffee: async (username) => {
     return await FavoriteCoffee.find({ username: username });
   },
+  deleteFavoriteCoffee: async (username) => {
+    return await FavoriteCoffee.deleteOne({ username: username });
+  },
 };
 
 module.exports = favoriteCoffeeModel;

@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
-app.get("/javaApi", getCoffee);
+app.get("/javaApi/random", getCoffee);
 app.use("/javaApi/favorite", favoriteRouter);
 
 app.listen(PORT, () => {
